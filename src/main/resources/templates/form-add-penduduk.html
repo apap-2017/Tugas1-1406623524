@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Tambah Penduduk</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+	
+
+	<form  th:action="@{/penduduk/tambah/submit}" th:object="${penduduk}" method="post">
+		<div>
+			<label for="nama">Masukkan Nama</label> <input type="text" name="nama" th:field="*{nama}" />
+		</div>
+		<div>
+			<label for="tempatlahir">Tempat Lahir</label> <input type="text" name="tempatLahir" th:field="*{tempatLahir}"/>
+		</div>
+		<div>
+			<label for="tanggallahir">Tanggal Lahir</label> <input type="text" name="tanggallahir" th:field="*{tanggalLahir}" />
+		</div>
+		<div>
+			<label for="golonganDarah">Golongan Darah</label>
+			<select name="golonganDarah" th:field="*{golonganDarah}">
+				<option th:value="'-'">--Pilih Golongan Darah</option>
+				<option th:value="'A-'">A-</option>
+				<option th:value="'A+'">A+</option>
+				<option th:value="'B-'">B-</option>
+				<option th:value="'B+'">B+</option>
+				<option th:value="'O-'">O-</option>
+				<option th:value="'O+'">O+</option>
+				<option th:value="'AB+'">AB+</option>
+			 </select>
+		</div>
+		<div>
+			<label for="jenisKelamin">Jenis Kelamin</label>
+			<select name="jenisKelamin" th:field="*{jenisKelamin}">
+				<option th:value="'-'">--Pilih Jenis Kelamin</option>
+				<option th:value="1">Wanita</option>
+				<option th:value="0">Pria</option>				
+			 </select>
+		</div>
+		<div>
+			<label for="agama">Agama</label> <input type="text" name="agama" th:field="*{agama}"/>
+		</div>		
+		<div>
+			<label for="pekerjaan">Pekerjaan</label> <input type="text" name="pekerjaan" th:field="*{pekerjaan}" />
+		</div>
+		<div>
+			<label for="isWNI">Kewarganegaraan</label>
+			<select name="isWNI" th:field="*{isWNI}">
+				<option th:value="'-'">--Pilih Status Kewarganegaraan</option>
+				<option th:value="1">WNI</option>
+				<option th:value="0">WNA</option>
+			</select>
+		</div>
+		<div>
+			<label for="isWafat">Status Kematian</label>
+			<select name="isWafat" th:field="*{isWafat}">
+			<option th:value="'-'">--Pilih Status Kematian</option>
+				<option th:value="1">Wafat</option>
+				<option th:value="0">Hidup</option>
+			</select>
+		</div>
+		<div>
+			<label for="statusPerkawinan">Status Perkawinan</label> <input type="text" name="statusPerkawinan" th:field="*{statusPerkawinan}"/>			
+		</div>
+		<div>
+			<label for="statusDalamKeluarga">Status Dalam Keluarga</label> <input type="text" name="statusDalamKeluarga" th:field="*{statusDalamKeluarga}"/>			
+		</div>	
+		<div>
+			<label for="idKeluarga">ID Keluarga</label> <input type="text" name="idKeluarga" th:field="*{idKeluarga}" />			
+		</div>
+		<button type="submit" name="action" value="save">Save</button>
+	</form>
+
+</body>
+
+</html>
+

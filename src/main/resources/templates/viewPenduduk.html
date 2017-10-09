@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View Penduduk</title>
+</head>
+<body>
+	<h3 th:text="'Lihat Data Penduduk - '+${penduduk.nik}">NIK</h3>
+	<table th:each="penduduk,iterationStatus:${penduduk}">
+		
+		<tr>
+			<td>NIK</td>
+			<td th:text="${penduduk.nik}">NIK</td>
+		</tr>
+		<tr>
+			<td>Nama</td>
+			<td th:text="${penduduk.nama}">nama</td>
+		</tr>
+		<tr>
+			<td>Tempat/Tanggal Lahir</td>
+			<td th:text="${penduduk.tempatLahir}+', '+${penduduk.tanggalLahir}">tempatlahir</td>
+		</tr>
+		<tr>
+			<td>Alamat</td>
+			<td th:text="${penduduk.keluarga.alamat}">alamat</td>
+		</tr>
+		<tr>
+			<td>RT/RW</td>
+			<td th:text="${penduduk.keluarga.rt}+'/'+${penduduk.keluarga.rt}">rtrw</td>
+		</tr>
+		<tr>
+			<td>Kelurahan/Desa</td>
+			<td th:text="${kelurahan}">klurahan</td>
+		</tr>
+		<tr>
+			<td>Kecamatan</td>
+			<td th:text="${kecamatan}">kcmtn</td>
+		</tr>
+		<tr>
+			<td>Kota</td>
+			<td th:text="${kota}">klurahan</td>
+		</tr>
+		<tr>
+			<td>Golongan Darah</td>
+			<td th:text="${penduduk.golonganDarah}">goldar</td>
+		</tr>
+		<tr>
+			<td>Agama</td>
+			<td th:text="${penduduk.agama}">agama</td>
+		</tr>
+		<tr>
+			<td>Status Perkawinan</td>
+			<td th:text="${penduduk.statusPerkawinan}">kawin</td>
+		</tr>
+		<tr>
+			<td>Pekerjaan</td>
+			<td th:text="${penduduk.pekerjaan}">pekerjaan</td>
+		</tr>
+		<tr>
+			<td>Kewarganegaraan</td>
+			<td th:switch="${penduduk.isWNI}">
+				<div th:case="1">WNI</div>
+				<div th:case="0">Warga Asing</div>
+			</td>
+		</tr>
+		<tr>
+			<td>Status Kematian</td>
+			<td th:switch="${penduduk.isWafat}">
+				<div th:case="1">Wafat</div>
+				<div th:case="0">Hidup</div>
+			</td>
+		</tr>
+		</tr>
+
+		<!--   <tr th:each="penduduk,iterationStatus:${penduduk}">
+		<td th:text="${penduduk.nik}">NIK</td>
+		<td th:text="${penduduk.nama}">nama</td>
+		<td th:text="${penduduk.tempatLahir}+', '+${penduduk.tanggalLahir}">tempatlahir</td>
+		<td th:text="${penduduk.nik}">alamat</td>
+		<td th:text="${penduduk.nik}">rt rw</td>
+		<td th:text="${penduduk.nik}">klurahan/desa</td>
+		<td th:text="${penduduk.nik}">kecamatan</td>
+		<td th:text="${penduduk.nik}">kota</td>
+		<td th:text="${penduduk.golonganDarah}">golongan darah</td>
+		<td th:text="${penduduk.agama}">agama</td>
+		<td th:text="${penduduk.statusPerkawinan}">status perkawinan</td>
+		<td th:text="${penduduk.pekerjaan}">pekerjaan</td>
+		<td th:switch="${penduduk.isWNI}">
+			<div th:case="'1'">WNI</div>
+			<div th:case="'0'">Warga Asing</div>
+		</td>
+		<td th:switch="${penduduk.isWafat}">
+			<div th:case="'1'">Hidup</div>
+			<div th:case="'0'">Wafat</div>
+		</td>
+	</tr> -->
+	</table>
+</body>
+</html>
