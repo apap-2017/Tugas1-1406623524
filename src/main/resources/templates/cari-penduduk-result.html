@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View Keluarga</title>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	<p></p>
+	<center>
+	<table class="table table-bordered" id="mytable">
+		<h3>List Penduduk</h3>
+		<p th:text="'lihat penduduk di kota '+${kota}+', Kecamatan '+${kec}+', Kelurahan '+${kel}"></p>
+		<tr>
+			<td>No</td>
+			<td>NIK</td>
+			<td>Nama Lengkap</td>
+			<td>Jenis Kelamin</td>
+
+		</tr>
+		<tr th:each="penduduk,iterationStatus:${listPenduduk}">
+			<td th:text="${iterationStatus.count}">No</td>
+			<td th:text="${penduduk.nik}">Nik</td>
+			<td th:text="${penduduk.nama}">No</td>
+			<td th:switch="${penduduk.jenisKelamin}">
+				<div th:case="1">Wanita</div>
+				<div th:case="0">Pria</div>
+			</td>
+		</tr>
+	</table>
+	</center>
+	<div>
+		<p></p>
+	</div>
+	
+	<script type="text/javascript">
+	$(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+	</script>
+</body>
+</html>

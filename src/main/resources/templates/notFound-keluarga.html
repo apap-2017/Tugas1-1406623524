@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Data not found</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    </head>
+    <body>
+    <div th:replace="fragments/header :: header"></div>
+    	<h1>Data not found</h1>
+       	<h3 th:text="'NKK = ' + ${nkk}">Penduduk nik/keluarga nkk</h3>
+       	<script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>

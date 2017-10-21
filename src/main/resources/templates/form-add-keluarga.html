@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Tambah Penduduk</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<center>
+		<h3>Tambah Keluarga</h3>
+	</center>
+	<div class="nav-link">
+	<form  th:action="@{/keluarga/tambah/submit}" th:object="${keluarga}" method="post">
+		<div>
+			<label for="alamat">Alamat</label> <p><input class="form-control mr-sm-2"  type="text" name="alamat" th:field="*{alamat}" /></p>
+		</div>
+		<div>
+			<label for="rt">RT</label> <p><input class="form-control mr-sm-2"  type="text" name="rt" th:field="*{rt}"/></p>
+		</div>
+		<div>
+			<label for="rw">RW</label> <p><input class="form-control mr-sm-2" type="text" name="rw" th:field="*{rw}" /></p>
+		</div>			
+		<div>		
+			<label for="idKelurahan">ID Kelurahan</label> <p><input class="form-control mr-sm-2" type="text" name="idKelurahan" th:field="*{idKelurahan}"/></p>
+		</div>				
+		<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="action" value="save">Save</button>
+	</form>
+	</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Menu keluarga</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<h3>
+		<a class="nav-link" href="/keluarga/tambah">Tambah Keluarga</a>
+	</h3>
+	<p></p>
+	<h3 class="nav-link">Cari Keluarga</h3>
+	<div class="nav-link">
+		<form class="form-inline my-2 my-lg-0" action="/keluarga/view/">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search"
+				aria-label="Search" name="nkk" method="post" />
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+				name="action" value="save">Search</button>
+		</form>
+	</div>
+	<p></p>
+	<h3 class="nav-link">Ubah Keluarga</h3>
+	<div class="nav-link">
+		<form class="form-inline my-2 my-lg-0" action="/keluarga/ubah/">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search"
+				aria-label="Search" name="nkk" />
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+				name="action" value="save">Search</button>
+		</form>
+	</div>
+
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

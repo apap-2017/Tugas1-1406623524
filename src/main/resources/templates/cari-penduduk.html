@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Cari Penduduk</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<h3>Cari Penduduk</h3>
+	<div class="nav-link">
+		<form action="/penduduk/cari/result" method="get">
+			<div>
+				<label for="id">Kota</label>
+				<p>
+					<select class="form-control mr-sm-2" name="idKota">
+						<option th:if="${idKota==null}">--Pilih Kota</option>
+						<option th:each="listKota : ${listKota}" th:value="${listKota.id}"
+							th:text="${listKota.namaKota}" />
+					</select>
+				</p>
+			</div>
+
+			<div>
+				<label for="id">Kecamatan</label>
+				<p>
+					<select class="form-control mr-sm-2" name="idKecamatan">
+						<option th:if="${idKecamatan==null}">--Pilih Kelurahan</option>
+						<option th:each="listKecamatan : ${listKecamatan}"
+							th:value="${listKecamatan.id}"
+							th:text="${listKecamatan.namaKecamatan}" />
+					</select>
+				</p>
+			</div>
+
+			<div>
+				<label for="id">Kelurahan</label>
+				<p>
+					<select class="form-control mr-sm-2" name="idKel">
+						<option th:if="${idKel==null}">--Pilih Kelurahan</option>
+						<option th:each="listKelurahan : ${listKelurahan}"
+							th:value="${listKelurahan.id}"
+							th:text="${listKelurahan.namaKelurahan}" />
+					</select>
+				</p>
+			</div>
+			<button type="submit" value="save">Save</button>
+		</form>
+	</div>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script>
+	function show_kecamatan() {
+		$.ajax({
+			url : "/penduduk/cari",
+			success : function(result) {
+				$("#div1").html(result);
+			}
+		});
+	}
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Update Status Wafat Penduduk</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+	<h1 class="page-header">Update Status Wafat Penduduk</h1>
+
+	<form action="#" th:action="@{/penduduk/submit}" th:object="${penduduk}" method="post">
+		<div>
+			<label for="nama">Nama</label> <p><input type="text" name="nama" th:field="*{nama}" /></p>
+		</div>		
+		<div>
+			<label for="nik">NIK</label> <p><input type="text" name="nik" readonly="true"  th:field="*{nik}" /></p>
+		</div>
+		
+		<div>
+			<label for="isWafat">Status Kematian</label>
+			<p>
+			<select name="isWafat" th:field="*{isWafat}">
+			<option th:value="''">--Pilih Status Kematian</option>
+				<option th:value="1">Wafat</option>
+				<option th:value="0">Hidup</option>
+			</select>
+			</p>
+		</div>	
+		<div>
+			<button type="submit" name="action" value="save">Update</button>
+		</div>
+	</form>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+

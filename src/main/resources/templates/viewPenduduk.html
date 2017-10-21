@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>View Penduduk</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 	<h3 th:text="'Lihat Data Penduduk - '+${penduduk.nik}">NIK</h3>
 	<table th:each="penduduk,iterationStatus:${penduduk}">
 		
@@ -69,30 +71,8 @@
 				<div th:case="0">Hidup</div>
 			</td>
 		</tr>
-		</tr>
-
-		<!--   <tr th:each="penduduk,iterationStatus:${penduduk}">
-		<td th:text="${penduduk.nik}">NIK</td>
-		<td th:text="${penduduk.nama}">nama</td>
-		<td th:text="${penduduk.tempatLahir}+', '+${penduduk.tanggalLahir}">tempatlahir</td>
-		<td th:text="${penduduk.nik}">alamat</td>
-		<td th:text="${penduduk.nik}">rt rw</td>
-		<td th:text="${penduduk.nik}">klurahan/desa</td>
-		<td th:text="${penduduk.nik}">kecamatan</td>
-		<td th:text="${penduduk.nik}">kota</td>
-		<td th:text="${penduduk.golonganDarah}">golongan darah</td>
-		<td th:text="${penduduk.agama}">agama</td>
-		<td th:text="${penduduk.statusPerkawinan}">status perkawinan</td>
-		<td th:text="${penduduk.pekerjaan}">pekerjaan</td>
-		<td th:switch="${penduduk.isWNI}">
-			<div th:case="'1'">WNI</div>
-			<div th:case="'0'">Warga Asing</div>
-		</td>
-		<td th:switch="${penduduk.isWafat}">
-			<div th:case="'1'">Hidup</div>
-			<div th:case="'0'">Wafat</div>
-		</td>
-	</tr> -->
+	<a class="nav-link" th:href="'/penduduk/'+${penduduk.nik}">Ubah Status Kematian</a>		
 	</table>
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

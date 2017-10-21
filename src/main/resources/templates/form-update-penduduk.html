@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Update Penduduk</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+	<h1 class="page-header">Update Penduduk</h1>
+
+	<form action="#" th:action="@{/penduduk/ubah/submit}" th:object="${penduduk}" method="post">
+		<div>
+			<label for="nama">Nama</label> <p><input class="form-control mr-sm-2"  type="text" name="nama" th:field="*{nama}" /></p>
+		</div>		
+		<div>
+			<label for="nik">NIK</label> <p><input class="form-control mr-sm-2"  type="text" name="nik" readonly="true"  th:field="*{nik}" /></p>
+		</div>
+		<div>
+			<label for="tempatLahir">Tempat Lahir</label> <p><input class="form-control mr-sm-2"  type="text" name="tempatLahir" th:field="*{tempatLahir}"/></p>
+		</div>
+		<div>
+			<label for="tanggalLahir">Tanggal Lahir</label> <p><input class="form-control mr-sm-2"  type="text" name="tanggalLahir" th:field="*{tanggalLahir}"/></p>
+		</div>
+		<div>
+			<label for="golonganDarah">Golongan Darah</label>
+			<p>
+			<select class="form-control mr-sm-2"  name="golonganDarah" th:field="*{golonganDarah}">
+				<option th:value="''">--Pilih Golongan Darah</option>
+				<option th:value="'A-'">A-</option>
+				<option th:value="'A+'">A+</option>
+				<option th:value="'B-'">B-</option>
+				<option th:value="'B+'">B+</option>
+				<option th:value="'O-'">O-</option>
+				<option th:value="'O+'">O+</option>
+				<option th:value="'AB+'">AB+</option>
+			 </select>
+			 </p>
+		</div>
+		<div>
+			<label for="jenisKelamin">Jenis Kelamin</label>
+			<p>
+			<select class="form-control mr-sm-2"  name="jenisKelamin" th:field="*{jenisKelamin}">
+				<option th:value="''">--Pilih Jenis Kelamin</option>
+				<option th:value="1">Wanita</option>
+				<option th:value="0">Pria</option>				
+			 </select>
+			 </p>
+		</div>
+		<div>		
+			<label for="agama">Agama</label> <p><input class="form-control mr-sm-2"  type="text" name="agama" th:field="*{agama}"/></p>
+		</div>		
+		<div>
+			<label for="pekerjaan">Pekerjaan</label> <p><input class="form-control mr-sm-2"  type="text" name="pekerjaan" th:field="*{pekerjaan}" /></p>
+		</div>
+		<div>
+			<label for="isWNI">Kewarganegaraan</label>
+			<p>
+			<select class="form-control mr-sm-2"  name="isWNI" th:field="*{isWNI}">
+				<option th:value="''">--Pilih Status Kewarganegaraan</option>
+				<option th:value="1">WNI</option>
+				<option th:value="0">WNA</option>
+			</select>
+			</p>
+		</div>
+	
+		<div>
+			<label for="statusPerkawinan">Status Perkawinan</label>
+			<p>
+			<select class="form-control mr-sm-2" name="statusPerkawinan" th:field="*{statusPerkawinan}">
+			<option th:value="'-'">--Pilih Status Perkawinan</option>
+				<option th:value="'Kawin'">Menikah</option>
+				<option th:value="'Belum Kawin'">Belum Menikah</option>
+			</select>
+			</p>
+		</div>	
+	
+		<div>
+			<label for="statusDalamKeluarga">Status Dalam Keluarga</label> <p><input class="form-control mr-sm-2" type="text" name="statusDalamKeluarga" th:field="*{statusDalamKeluarga}"/></p>			
+		</div>	
+		<div>
+			<label for="idKeluarga">ID Keluarga</label><p><input class="form-control mr-sm-2" type="text" name="idKeluarga" th:field="*{idKeluarga}" /></p>			
+		</div>
+		<div>
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="action" value="save">Update</button>
+		</div>
+	</form>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
