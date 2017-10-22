@@ -25,7 +25,8 @@ public interface KeluargaMapper {
 	})
 	KotaModel selectKota(@Param("id") String id);
 		
-	@Select("SELECT distinct kecamatan.id, kecamatan.id_kota as id_kota, kecamatan.nama_kecamatan as nama_kecamatan, kecamatan.kode_kecamatan as kode_kecamatan "
+	@Select("SELECT distinct kecamatan.id, kecamatan.id_kota as id_kota, kecamatan.nama_kecamatan as nama_kecamatan, "
+			+ "kecamatan.kode_kecamatan as kode_kecamatan "
 			+ "from kecamatan "
 			+ "join kota on kecamatan.id_kota=kota.id "
 			+ "where kecamatan.id=#{idKecamatan}")
@@ -48,7 +49,8 @@ public interface KeluargaMapper {
 	})
 	KelurahanModel selectKelurahan(@Param("idKelurahan") String idKelurahan);
 	
-	@Select("SELECT distinct keluarga.id, keluarga.id_kelurahan as id_kelurahan, keluarga.alamat as alamat, keluarga.rt as rt, keluarga.rw as rw, keluarga.nomor_kk as nomor_kk "
+	@Select("SELECT distinct keluarga.id, keluarga.id_kelurahan as id_kelurahan, keluarga.alamat as alamat, "
+			+ "keluarga.rt as rt, keluarga.rw as rw, keluarga.nomor_kk as nomor_kk "
 			+ "from keluarga "
 			+ "left join penduduk on keluarga.id = penduduk.id_keluarga "
 			+ "where keluarga.nomor_kk=#{nkk}")
@@ -63,7 +65,8 @@ public interface KeluargaMapper {
 	KeluargaModel selectKeluarga(@Param("nkk") String nkk);
 	
 	@Select("SELECT p.nama, p.nik as nik, p.jenis_kelamin as jenis_kelamin, p.tempat_lahir as tempat_lahir, p.tanggal_lahir as tanggal_lahir, "
-			+ "p.agama as agama, p.pekerjaan as pekerjaan, p.status_perkawinan as status_perkawinan, p.status_dalam_keluarga as status_dalam_keluarga, p.is_wni as is_wni, p.is_wafat as is_wafat "
+			+ "p.agama as agama, p.pekerjaan as pekerjaan, p.status_perkawinan as status_perkawinan, "
+			+ "p.status_dalam_keluarga as status_dalam_keluarga, p.is_wni as is_wni, p.is_wafat as is_wafat "
 			+ "FROM penduduk p, keluarga k "
 			+ "WHERE k.id=p.id_keluarga and k.nomor_kk =#{nkk}")
 	@Results(value = {		

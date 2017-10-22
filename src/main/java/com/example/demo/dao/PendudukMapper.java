@@ -25,7 +25,8 @@ public interface PendudukMapper {
 			@Result(property = "kodeKota", column = "kode_kota") })
 	KotaModel selectKota(@Param("id") String id);
 
-	@Select("SELECT distinct kecamatan.id, kecamatan.id_kota as id_kota, kecamatan.nama_kecamatan as nama_kecamatan, kecamatan.kode_kecamatan as kode_kecamatan "
+	@Select("SELECT distinct kecamatan.id, kecamatan.id_kota as id_kota, kecamatan.nama_kecamatan as nama_kecamatan, "
+			+ "kecamatan.kode_kecamatan as kode_kecamatan "
 			+ "from kecamatan " + "join kota on kecamatan.id_kota=kota.id " + "where kecamatan.id=#{idKecamatan}")
 	@Results(value = { @Result(property = "idKecamatan", column = "id_kecamatan"),
 			@Result(property = "namaKecamatan", column = "nama_kecamatan"),
@@ -33,7 +34,8 @@ public interface PendudukMapper {
 			@Result(property = "kota", column = "id_kota", javaType = KotaModel.class, many = @Many(select = "selectKota")) })
 	KecamatanModel selectKecamatan(@Param("idKecamatan") String idKecamatan);
 
-	@Select("SELECT distinct kelurahan.id, kelurahan.id_kecamatan as id_kecamatan, kelurahan.nama_kelurahan as nama_kelurahan, kelurahan.kode_kelurahan as kode_kelurahan "
+	@Select("SELECT distinct kelurahan.id, kelurahan.id_kecamatan as id_kecamatan, kelurahan.nama_kelurahan as nama_kelurahan, "
+			+ "kelurahan.kode_kelurahan as kode_kelurahan "
 			+ "from kelurahan " + "join keluarga on kelurahan.id = keluarga.id_kelurahan "
 			+ "where kelurahan.id=#{idKelurahan}")
 	@Results(value = { @Result(property = "idKecamatan", column = "id_kecamatan"),
@@ -42,7 +44,8 @@ public interface PendudukMapper {
 			@Result(property = "kecamatan", column = "id_kecamatan", javaType = KecamatanModel.class, many = @Many(select = "selectKecamatan")) })
 	KelurahanModel selectKelurahan(@Param("idKelurahan") String idKelurahan);
 
-	@Select("SELECT distinct keluarga.id, keluarga.id_kelurahan as id_kelurahan, keluarga.alamat as alamat, keluarga.rt as rt, keluarga.rw as rw,keluarga.nomor_kk as nomor_kk "
+	@Select("SELECT distinct keluarga.id, keluarga.id_kelurahan as id_kelurahan, keluarga.alamat as alamat, keluarga.rt as rt, "
+			+ "keluarga.rw as rw,keluarga.nomor_kk as nomor_kk "
 			+ "from keluarga " + "join penduduk on keluarga.id = penduduk.id_keluarga "
 			+ "where keluarga.id=#{idKeluarga}")
 	@Results(value = { @Result(property = "idKelurahan", column = "id_kelurahan"),
@@ -63,15 +66,19 @@ public interface PendudukMapper {
 			@Result(property = "keluarga", column = "id_keluarga", javaType = KeluargaModel.class, many = @Many(select = "selectKeluarga")) })
 	PendudukModel selectPenduduk(@Param("nik") String nik);
 
-	@Insert("INSERT INTO penduduk (nik, nama, tempat_lahir, tanggal_lahir, golongan_darah, agama, jenis_kelamin, pekerjaan, is_wni, is_wafat, status_dalam_keluarga, status_perkawinan, id_keluarga) "
-			+ "VALUES ('tes', #{nama}, #{tempatLahir}, #{tanggalLahir}, #{golonganDarah}, #{agama}, #{jenisKelamin}, #{pekerjaan}, #{isWNI}, #{isWafat}, #{statusDalamKeluarga}, #{statusPerkawinan}, #{idKeluarga})")
+	@Insert("INSERT INTO penduduk (nik, nama, tempat_lahir, tanggal_lahir, golongan_darah, agama, jenis_kelamin, "
+			+ "pekerjaan, is_wni, is_wafat, status_dalam_keluarga, status_perkawinan, id_keluarga) "
+			+ "VALUES ('tes', #{nama}, #{tempatLahir}, #{tanggalLahir}, #{golonganDarah}, #{agama}, #{jenisKelamin}, "
+			+ "#{pekerjaan}, #{isWNI}, #{isWafat}, #{statusDalamKeluarga}, #{statusPerkawinan}, #{idKeluarga})")
 	void addPenduduk(PendudukModel penduduk);
 
 	@Update("UPDATE penduduk SET nik = #{nik} where penduduk.id=#{id}")
 	void updateNIK(PendudukModel penduduk);
 
 	@Update("UPDATE penduduk "
-			+ "SET nama=#{nama}, tempat_lahir=#{tempatLahir}, tanggal_lahir=#{tanggalLahir}, golongan_darah=#{golonganDarah}, agama=#{agama}, jenis_kelamin=#{jenisKelamin}, pekerjaan=#{pekerjaan}, is_wni=#{isWNI}, status_dalam_keluarga=#{statusDalamKeluarga}, status_perkawinan=#{statusPerkawinan}, id_keluarga=#{idKeluarga} "
+			+ "SET nama=#{nama}, tempat_lahir=#{tempatLahir}, tanggal_lahir=#{tanggalLahir}, "
+			+ "golongan_darah=#{golonganDarah}, agama=#{agama}, jenis_kelamin=#{jenisKelamin}, pekerjaan=#{pekerjaan}, "
+			+ "is_wni=#{isWNI}, status_dalam_keluarga=#{statusDalamKeluarga}, status_perkawinan=#{statusPerkawinan}, id_keluarga=#{idKeluarga} "
 			+ "WHERE nik = #{nik}")
 	void updatePenduduk(PendudukModel penduduk);
 
@@ -89,13 +96,13 @@ public interface PendudukMapper {
 			@Result(property = "isWNI", column = "is_wni"), @Result(property = "isWafat", column = "is_wafat") })
 	PendudukModel lastPenduduk();
 
-	@Select("Select * from kota")
+	@Select("Select * from kota order by nama_kota")
 	@Results(value = { @Result(property = "id", column = "id"), @Result(property = "namaKota", column = "nama_kota"),
 			@Result(property = "kodeKota", column = "kode_kota") })
 	ArrayList<KotaModel> selectListKota();
 
 	@Select("SELECT distinct kecamatan.id, kecamatan.id_kota as id_kota, kecamatan.nama_kecamatan as nama_kecamatan, kecamatan.kode_kecamatan as kode_kecamatan "
-			+ "from kecamatan " + "join kota on kecamatan.id_kota=kota.id ")
+			+ "from kecamatan " + "join kota on kecamatan.id_kota=kota.id order by nama_kecamatan")
 	@Results(value = { @Result(property = "id", column = "id"),
 			@Result(property = "idKecamatan", column = "id_kecamatan"),
 			@Result(property = "namaKecamatan", column = "nama_kecamatan"),
@@ -103,7 +110,7 @@ public interface PendudukMapper {
 	ArrayList<KecamatanModel> selectListKecamatan(@Param("idKota") Integer idKota);
 
 	@Select("SELECT distinct kelurahan.id, kelurahan.id_kecamatan as id_kecamatan, kelurahan.nama_kelurahan as nama_kelurahan, kelurahan.kode_kelurahan as kode_kelurahan "
-			+ "from kelurahan " + "join keluarga on kelurahan.id = keluarga.id_kelurahan ")
+			+ "from kelurahan " + "join keluarga on kelurahan.id = keluarga.id_kelurahan order by nama_kelurahan ")
 	@Results(value = { @Result(property = "id", column = "id"),
 			@Result(property = "idKecamatan", column = "id_kecamatan"),
 			@Result(property = "namaKelurahan", column = "nama_kelurahan"),
